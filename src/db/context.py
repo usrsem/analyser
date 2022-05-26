@@ -38,8 +38,7 @@ def _get_query_cls(mapper, session):
 
 start_mappers()
 
-
-_async_session_factory = sessionmaker(
+_async_session_factory: sessionmaker = sessionmaker(
         query_cls=_get_query_cls, class_=AsyncSession)
 
 async_session: scoped_session = scoped_session(_async_session_factory)
