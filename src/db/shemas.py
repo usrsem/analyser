@@ -22,7 +22,7 @@ import_table = Table(
 citizen_table = Table(
     'citizen',
     metadata,
-    Column('import_id', Integer, ForeignKey('imports.import_id'),
+    Column('import_id', Integer, ForeignKey('import.import_id'),
            primary_key=True),
     Column('citizen_id', Integer, primary_key=True),
     Column('town', String, nullable=False, index=True),
@@ -42,11 +42,11 @@ relation_table = Table(
     Column('relative_id', Integer, primary_key=True),
     ForeignKeyConstraint(
         ('import_id', 'citizen_id'),
-        ('citizens.import_id', 'citizens.citizen_id')
+        ('citizen.import_id', 'citizen.citizen_id')
     ),
     ForeignKeyConstraint(
         ('import_id', 'relative_id'),
-        ('citizens.import_id', 'citizens.citizen_id')
+        ('citizen.import_id', 'citizen.citizen_id')
     ),
 )
 
