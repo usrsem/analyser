@@ -1,8 +1,11 @@
+from asyncio import current_task
 from contextlib import asynccontextmanager
 from typing import AsyncGenerator
+from sqlalchemy.ext.asyncio.engine import create_async_engine
 from sqlalchemy.orm import sessionmaker, Mapper, Query
 from sqlalchemy.orm.scoping import scoped_session
-from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.ext.asyncio import AsyncSession, async_scoped_session
+from analyser.config import ASYNC_DEFAULT_PG_URL
 from db.mappers import start_mappers
 
 
@@ -36,10 +39,16 @@ def _get_query_cls(mapper, session):
     return Query(mapper, session)
 
 
-start_mappers()
+_engine = create_async_engine(ASYNC_DEFAULT_PG_URL, echo=True)
 
 _async_session_factory: sessionmaker = sessionmaker(
-        query_cls=_get_query_cls, class_=AsyncSession)
+    _engine,
+    query_cls=_get_query_cls,
+    expire_on_commit=False,
+    class_=AsyncSession)
 
-async_session: scoped_session = scoped_session(_async_session_factory)
+async_session: async_scoped_session = async_scoped_session(
+    _async_session_factory, scopefunc=current_task)
+
+start_mappers()
 
