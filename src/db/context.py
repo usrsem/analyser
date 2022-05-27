@@ -50,5 +50,11 @@ session: async_scoped_session = async_scoped_session(
     _async_session_factory, scopefunc=current_task)
 
 
+DEFAULT_SESSION_FACTORY = sessionmaker(
+    create_async_engine(ASYNC_DEFAULT_PG_URL, echo=True),
+    query_cls=_get_query_cls,
+    expire_on_commit=False,
+    class_=AsyncSession)
+
 start_mappers()
 
