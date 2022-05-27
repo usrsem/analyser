@@ -11,13 +11,8 @@ class AsyncImportRepository(Protocol):
 
 
 class AsyncSessionImportRepository:
-    def __init__(
-        self,
-        session: AsyncSession,
-        logger: Logger
-    ) -> None:
+    def __init__(self,session: AsyncSession) -> None:
         self._session: AsyncSession = session
-        self.log: Logger = logger
 
     async def save(self, import_dto: ImportId) -> None:
         self._session.add(import_dto)

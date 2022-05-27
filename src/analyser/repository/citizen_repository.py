@@ -18,13 +18,8 @@ class AsyncCitizenRepository(Protocol):
 
 
 class AsyncSessionCitizenRepository:
-    def __init__(
-        self,
-        session: AsyncSession,
-        logger: Logger
-    ) -> None:
+    def __init__(self,session: AsyncSession) -> None:
         self._session: AsyncSession = session
-        self.log: Logger = logger
 
     async def save_citizens(self, citizens: Iterable[Citizen]) -> None:
         self._session.add_all(citizens)
