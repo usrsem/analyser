@@ -1,7 +1,7 @@
 import pytest
 from datetime import date
 from analyser.config import ASYNC_DEFAULT_PG_URL
-from analyser.domain.dtos import Citizen, Gender, ImportDto
+from analyser.domain.dtos import Citizen, Gender, Import
 from db.mappers import start_mappers
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
@@ -21,7 +21,7 @@ async def session():
 
 @pytest.fixture(scope="function")
 async def citizen(session):
-    import_dto = ImportDto()
+    import_dto = Import()
     session.add(import_dto)
     await session.commit()
 

@@ -1,12 +1,12 @@
 from sqlalchemy.ext.asyncio.session import AsyncSession
-from analyser.domain.dtos import ImportDto
+from analyser.domain.dtos import Import
 from typing import Protocol
 
 from analyser.domain.logger import Logger
 
 
 class AsyncImportRepository(Protocol):
-    async def save(self, import_dto: ImportDto) -> None:
+    async def save(self, import_dto: Import) -> None:
         ...
 
 
@@ -19,6 +19,6 @@ class AsyncSessionImportRepository:
         self._session: AsyncSession = session
         self.log: Logger = logger
 
-    async def save(self, import_dto: ImportDto) -> None:
+    async def save(self, import_dto: Import) -> None:
         self._session.add(import_dto)
 
