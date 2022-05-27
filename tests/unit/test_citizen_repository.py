@@ -9,7 +9,7 @@ from typing import Optional
 
 @pytest.fixture
 async def repository(session):
-    yield AsyncSessionCitizenRepository(session, logger) # type: ignore
+    yield AsyncSessionCitizenRepository(session) # type: ignore
 
 
 async def test_save_citizens(

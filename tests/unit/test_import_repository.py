@@ -7,7 +7,7 @@ from loguru import logger
 
 @pytest.fixture
 def repository(session):
-    return AsyncSessionImportRepository(session, logger) # type: ignore
+    return AsyncSessionImportRepository(session)
 
 
 async def test_saves_import(
