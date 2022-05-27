@@ -1,3 +1,4 @@
+import uuid
 from dataclasses import dataclass
 from datetime import date
 from enum import unique, Enum
@@ -13,7 +14,6 @@ class Gender(Enum):
 
 @dataclass(unsafe_hash=True, eq=True)
 class Citizen:
-    citizen_id: int
     town: str
     street: str
     building: str
@@ -21,12 +21,13 @@ class Citizen:
     name: str
     birth_date: date
     gender: Gender
-    import_id: Optional[int] = None
     relatives: tuple[int] = tuple()
+    import_id: uuid.UUID = uuid.uuid4()
+    citizen_id: uuid.UUID = uuid.uuid4()
 
 
 @dataclass(unsafe_hash=True, eq=True)
 class ImportDto:
-    import_id: int
+    import_id: uuid.UUID = uuid.uuid4()
 
 
