@@ -21,9 +21,9 @@ class CitizenDto:
     name: str
     birth_date: date
     gender: Gender
-    relatives: tuple[uuid.UUID] = tuple()
-    import_id: uuid.UUID = uuid.uuid4()
-    citizen_id: uuid.UUID = uuid.uuid4()
+    relatives: tuple[uuid.UUID, ...]
+    import_id: uuid.UUID
+    citizen_id: uuid.UUID
 
 
 @dataclass
