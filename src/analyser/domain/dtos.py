@@ -13,7 +13,7 @@ class Gender(Enum):
 
 
 @dataclass
-class Citizen:
+class CitizenDto:
     town: str
     street: str
     building: str
@@ -27,12 +27,12 @@ class Citizen:
 
 
 @dataclass
-class ImportId:
+class ImportIdDto:
     import_id: uuid.UUID = uuid.uuid4()
 
 
 @dataclass
-class Import:
-    citizens: list[Citizen]
-    import_id: ImportId = ImportId()
+class ImportDto:
+    citizens: list[CitizenDto]
+    import_id: ImportIdDto = ImportIdDto()
 

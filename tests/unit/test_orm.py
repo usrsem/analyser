@@ -1,9 +1,9 @@
 from sqlalchemy.ext.asyncio.session import AsyncSession
-from analyser.domain.dtos import Citizen
+from analyser.domain.dtos import CitizenDto
 
 
 async def test_citizen_mapper_can_save_row(
-    citizen: Citizen,
+    citizen: CitizenDto,
     session: AsyncSession
 ) -> None:
 
@@ -11,7 +11,7 @@ async def test_citizen_mapper_can_save_row(
         session.add(citizen)
 
     after = await session.get(
-                        Citizen, (citizen.import_id, citizen.citizen_id))
+                        CitizenDto, (citizen.import_id, citizen.citizen_id))
 
     async with session.begin():
         await session.delete(citizen)

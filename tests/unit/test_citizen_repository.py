@@ -2,26 +2,26 @@ import pytest
 from sqlalchemy.ext.asyncio.session import AsyncSession
 from sqlalchemy.exc import SQLAlchemyError
 from analyser.repository.citizen_repository import AsyncCitizenRepository, AsyncSessionCitizenRepository
-from analyser.domain.dtos import Citizen
+from analyser.domain.dtos import CitizenDto
 from loguru import logger
 from typing import Optional
 
 
 @pytest.fixture
 async def repository(session):
-    yield AsyncSessionCitizenRepository(session) # type: ignore
+    yield AsyncSessionCitizenRepository(session)
 
 
 async def test_save_citizens(
     repository: AsyncCitizenRepository,
     session: AsyncSession,
-    citizen: Citizen,
+    citizen: CitizenDto,
 ) -> None:
     await repository.save_citizens([citizen]) 
     await session.commit()
 
     mustbe = await session.get(
-        Citizen, (citizen.import_id, citizen.citizen_id))
+        CitizenDto, (citizen.import_id, citizen.citizen_id))
 
 
     await session.delete(citizen)
@@ -33,13 +33,13 @@ async def test_save_citizens(
 async def test_find_by_citizen_id(
     repository: AsyncCitizenRepository,
     session: AsyncSession,
-    citizen: Citizen
+    citizen: CitizenDto
 ) -> None:
     await repository.save_citizens([citizen])
     await session.commit()
 
 
-    new_citizen: Optional[Citizen] = await repository.find_by_citizen_id(
+    new_citizen: Optional[CitizenDto] = await repository.find_by_citizen_id(
         citizen.citizen_id)
 
     await session.delete(citizen)
@@ -51,7 +51,7 @@ async def test_find_by_citizen_id(
 async def test_delete_by_citizen_id(
     repository: AsyncCitizenRepository,
     session: AsyncSession,
-    citizen: Citizen
+    citizen: CitizenDto
 ) -> None:
     await repository.save_citizens([citizen])
     await session.commit()
@@ -59,7 +59,7 @@ async def test_delete_by_citizen_id(
     await repository.delete_by_citizen_id(citizen.citizen_id)
     await session.commit()
 
-    after: Optional[Citizen] = await repository.find_by_citizen_id(
+    after: Optional[CitizenDto] = await repository.find_by_citizen_id(
         citizen.citizen_id) 
 
     await session.delete(citizen)
@@ -70,7 +70,7 @@ async def test_delete_by_citizen_id(
 
 async def test_delete_by_citizen_empty_row(
     repository: AsyncCitizenRepository,
-    citizen: Citizen
+    citizen: CitizenDto
 ) -> None:
     try:
         await repository.delete_by_citizen_id(citizen.citizen_id)
