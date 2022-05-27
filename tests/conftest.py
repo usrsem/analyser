@@ -2,6 +2,7 @@ import pytest
 from datetime import date
 from analyser.config import ASYNC_DEFAULT_PG_URL
 from analyser.domain.dtos import Citizen, Gender, ImportDto
+from db.mappers import start_mappers
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
 
@@ -36,4 +37,7 @@ async def citizen(session):
 
     await session.delete(import_dto)
     await session.commit()
+
+
+start_mappers()
 
