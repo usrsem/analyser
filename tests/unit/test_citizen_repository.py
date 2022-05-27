@@ -17,7 +17,7 @@ async def test_save_citizens(
     session: AsyncSession,
     citizen: CitizenDto,
 ) -> None:
-    await repository.save_citizens([citizen]) 
+    await repository.save_all([citizen]) 
     await session.commit()
 
     mustbe = await session.get(
@@ -35,7 +35,7 @@ async def test_find_by_citizen_id(
     session: AsyncSession,
     citizen: CitizenDto
 ) -> None:
-    await repository.save_citizens([citizen])
+    await repository.save_all([citizen])
     await session.commit()
 
 
@@ -53,7 +53,7 @@ async def test_delete_by_citizen_id(
     session: AsyncSession,
     citizen: CitizenDto
 ) -> None:
-    await repository.save_citizens([citizen])
+    await repository.save_all([citizen])
     await session.commit()
 
     await repository.delete_by_citizen_id(citizen.citizen_id)

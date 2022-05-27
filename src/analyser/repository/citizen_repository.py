@@ -7,7 +7,7 @@ from typing import Iterable, Optional, Protocol
 
 
 class AsyncCitizenRepository(Protocol):
-    async def save_citizens(self, citizens: Iterable[CitizenDto]) -> None:
+    async def save_all(self, citizens: Iterable[CitizenDto]) -> None:
         ...
 
     async def find_by_citizen_id(self, citizen_id: UUID) -> Optional[CitizenDto]:
@@ -21,7 +21,7 @@ class AsyncSessionCitizenRepository:
     def __init__(self,session: AsyncSession) -> None:
         self._session: AsyncSession = session
 
-    async def save_citizens(self, citizens: Iterable[CitizenDto]) -> None:
+    async def save_all(self, citizens: Iterable[CitizenDto]) -> None:
         self._session.add_all(citizens)
 
     async def find_by_citizen_id(self, citizen_id: UUID) -> Optional[CitizenDto]:
