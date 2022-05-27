@@ -10,7 +10,7 @@ from typing import Any
 import_id: UUID = uuid4()
 citizen_id: UUID = uuid4()
 
-dto_data: dict[str, Any] = {
+model_data: dict[str, Any] = {
     "town": "some_town",
     "street": "some_street",
     "building": "some_building",
@@ -23,7 +23,7 @@ dto_data: dict[str, Any] = {
     "citizen_id": citizen_id,
 }
 
-model_data: dict[str, Any] = {
+dto_data: dict[str, Any] = {
     "town": "some_town",
     "street": "some_street",
     "building": "some_building",
