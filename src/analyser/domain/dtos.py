@@ -3,17 +3,17 @@ from dataclasses import dataclass
 from datetime import date
 from enum import unique, Enum
 
-from pydantic.main import BaseModel
+from dataclasses import dataclass
 
 
-@unique
 class Gender(Enum):
     FEMALE = "female"
     MALE = "male"
     NOT_MENTIONED = "not_mentioned"
 
 
-class Citizen(BaseModel):
+@dataclass
+class Citizen:
     town: str
     street: str
     building: str
@@ -26,11 +26,13 @@ class Citizen(BaseModel):
     citizen_id: uuid.UUID = uuid.uuid4()
 
 
-class ImportId(BaseModel):
+@dataclass
+class ImportId:
     import_id: uuid.UUID = uuid.uuid4()
 
 
-class Import(BaseModel):
+@dataclass
+class Import:
     citizens: list[Citizen]
     import_id: ImportId = ImportId()
 
