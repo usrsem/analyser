@@ -47,8 +47,9 @@ _async_session_factory: sessionmaker = sessionmaker(
     expire_on_commit=False,
     class_=AsyncSession)
 
-async_session: async_scoped_session = async_scoped_session(
+session: async_scoped_session = async_scoped_session(
     _async_session_factory, scopefunc=current_task)
+
 
 start_mappers()
 
