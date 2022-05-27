@@ -26,7 +26,7 @@ class Citizen(BaseModel):
     citizen_id: uuid.UUID = uuid.uuid4()
 
 
-class Import(BaseModel):
+class ImportId(BaseModel):
     import_id: uuid.UUID = uuid.uuid4()
 
 
