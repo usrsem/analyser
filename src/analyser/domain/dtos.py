@@ -20,7 +20,7 @@ class Citizen:
     name: str
     birth_date: date
     gender: Gender
-    relatives: tuple[int] = tuple()
+    relatives: tuple[uuid.UUID] = tuple()
     import_id: uuid.UUID = uuid.uuid4()
     citizen_id: uuid.UUID = uuid.uuid4()
 
