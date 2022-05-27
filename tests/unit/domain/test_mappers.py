@@ -10,27 +10,34 @@ from typing import Any
 import_id: UUID = uuid4()
 citizen_id: UUID = uuid4()
 
-data: dict[str, Any] = {
+dto_data: dict[str, Any] = {
     "town": "some_town",
     "street": "some_street",
     "building": "some_building",
     "apartment": 1,
     "name": "some_name",
+    "birth_date": "01.01.1970",
+    "gender": "male",
     "relatives": tuple(),
     "import_id": import_id,
-    "citizen_id": citizen_id
+    "citizen_id": citizen_id,
 }
 
-model_data = deepcopy(data)
-model_data["birth_date"] = "01.01.1970"
-model_data["gender"] = "male"
+model_data: dict[str, Any] = {
+    "town": "some_town",
+    "street": "some_street",
+    "building": "some_building",
+    "apartment": 1,
+    "name": "some_name",
+    "birth_date": datetime.strptime("01.01.1970", "%d.%m.%Y").date(),
+    "gender": Gender.MALE,
+    "relatives": tuple(),
+    "import_id": import_id,
+    "citizen_id": citizen_id,
+}
 
-dto_data = deepcopy(data)
-dto_data["birth_date"] = datetime.strptime("01.01.1970", "%d.%m.%Y").date()
-dto_data["gender"] = Gender.MALE
-
-citizen_model = CitizenModel(**model_data)
 citizen_dto = CitizenDto(**dto_data)
+citizen_model = CitizenModel(**model_data)
 
 
 def test_mapping_citizen_model_to_dto():
