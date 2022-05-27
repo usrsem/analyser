@@ -1,5 +1,5 @@
 from sqlalchemy.ext.asyncio.session import AsyncSession
-from analyser.domain.dtos import Citizen, ImportDto
+from analyser.domain.dtos import Citizen
 
 
 async def test_citizen_mapper_can_save_row(

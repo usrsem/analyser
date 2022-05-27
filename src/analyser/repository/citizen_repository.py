@@ -1,10 +1,8 @@
 from uuid import UUID
-from sqlalchemy.ext.asyncio.scoping import async_scoped_session
 from analyser.domain.logger import Logger
 from sqlalchemy.future import select
-from sqlalchemy.orm.scoping import scoped_session
 from sqlalchemy.ext.asyncio import AsyncSession
-from analyser.domain.dtos import Citizen, ImportDto
+from analyser.domain.dtos import Citizen
 from typing import Iterable, Optional, Protocol
 
 

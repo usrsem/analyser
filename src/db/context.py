@@ -3,7 +3,6 @@ from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 from sqlalchemy.ext.asyncio.engine import create_async_engine
 from sqlalchemy.orm import sessionmaker, Mapper, Query
-from sqlalchemy.orm.scoping import scoped_session
 from sqlalchemy.ext.asyncio import AsyncSession, async_scoped_session
 from analyser.config import ASYNC_DEFAULT_PG_URL
 from db.mappers import start_mappers

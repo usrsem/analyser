@@ -1,11 +1,8 @@
 import pytest
 from sqlalchemy.ext.asyncio.session import AsyncSession
-from sqlalchemy.exc import SQLAlchemyError, IntegrityError
-from sqlalchemy.orm.session import Session
-
+from sqlalchemy.exc import SQLAlchemyError
 from analyser.repository.citizen_repository import AsyncCitizenRepository, AsyncSessionCitizenRepository
-from analyser.domain.dtos import Citizen, ImportDto
-from db.context import session as asession
+from analyser.domain.dtos import Citizen
 from loguru import logger
 from typing import Optional
 
@@ -73,7 +70,6 @@ async def test_delete_by_citizen_id(
 
 async def test_delete_by_citizen_empty_row(
     repository: AsyncCitizenRepository,
-    session: AsyncSession,
     citizen: Citizen
 ) -> None:
     try:

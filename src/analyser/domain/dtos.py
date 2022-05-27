@@ -2,7 +2,6 @@ import uuid
 from dataclasses import dataclass
 from datetime import date
 from enum import unique, Enum
-from typing import Optional
 
 
 @unique
