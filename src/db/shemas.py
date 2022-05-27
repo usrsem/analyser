@@ -3,6 +3,7 @@ from analyser.config import DEFAULT_PG_URL
 
 from sqlalchemy.engine.create import create_engine
 from sqlalchemy.sql.schema import MetaData
+from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy import (
     Table, Column, Integer, String, ForeignKey,
     Date, Enum, ForeignKeyConstraint
@@ -16,15 +17,15 @@ metadata = MetaData(bind=engine)
 import_table = Table(
     'import',
     metadata,
-    Column('import_id', Integer, primary_key=True)
+    Column('import_id', UUID(as_uuid=True), primary_key=True)
 )
 
 citizen_table = Table(
     'citizen',
     metadata,
-    Column('import_id', Integer, ForeignKey('import.import_id'),
+    Column('import_id', UUID(as_uuid=True), ForeignKey('import.import_id'),
            primary_key=True),
-    Column('citizen_id', Integer, primary_key=True),
+    Column('citizen_id', UUID(as_uuid=True), primary_key=True),
     Column('town', String, nullable=False, index=True),
     Column('street', String, nullable=False),
     Column('building', String, nullable=False),
@@ -37,9 +38,9 @@ citizen_table = Table(
 relation_table = Table(
     'relation',
     metadata,
-    Column('import_id', Integer, primary_key=True),
-    Column('citizen_id', Integer, primary_key=True),
-    Column('relative_id', Integer, primary_key=True),
+    Column('import_id', UUID(as_uuid=True), primary_key=True),
+    Column('citizen_id', UUID(as_uuid=True), primary_key=True),
+    Column('relative_id', UUID(as_uuid=True), primary_key=True),
     ForeignKeyConstraint(
         ('import_id', 'citizen_id'),
         ('citizen.import_id', 'citizen.citizen_id')
