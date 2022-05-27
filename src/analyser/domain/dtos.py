@@ -30,3 +30,7 @@ class ImportId(BaseModel):
     import_id: uuid.UUID = uuid.uuid4()
 
 
+class Import(BaseModel):
+    citizens: list[Citizen]
+    import_id: ImportId = ImportId()
+
