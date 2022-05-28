@@ -2,12 +2,12 @@ import pytest
 from analyser.domain.dtos import ImportDto
 from analyser.repository.repository_uow import FakeUnitOfWork, RepositoryUnitOfWork
 
-from analyser.service.imports_service import ImportService, V1ImportService
+from analyser.service.imports_service import ImportsService, V1ImportsService
 
 
 @pytest.fixture
 def service():
-    return V1ImportService(FakeUnitOfWork())
+    return V1ImportsService(FakeUnitOfWork())
 
 
 @pytest.fixture
