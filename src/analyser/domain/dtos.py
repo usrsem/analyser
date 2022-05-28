@@ -1,7 +1,7 @@
 import uuid
 from dataclasses import dataclass
 from datetime import date
-from enum import unique, Enum
+from enum import Enum
 
 from dataclasses import dataclass
 
@@ -34,5 +34,5 @@ class ImportIdDto:
 @dataclass
 class ImportDto:
     citizens: list[CitizenDto]
-    import_id: ImportIdDto = ImportIdDto()
+    import_id: ImportIdDto
 
