@@ -1,8 +1,8 @@
 import pytest
-from analyser.domain.dtos import ImportDto
-from analyser.repository.repository_uow import FakeUnitOfWork, RepositoryUnitOfWork
+from analyser.domain.dtos import ImportDto, ImportIdDto
+from analyser.repository.repository_uow import FakeUnitOfWork
 
-from analyser.service.imports_service import ImportsService, V1ImportsService
+from analyser.service.imports_service import V1ImportsService
 
 
 @pytest.fixture
@@ -12,7 +12,7 @@ def service():
 
 @pytest.fixture
 def import_dto(random_citizens_list):
-    dto = ImportDto(random_citizens_list)
+    dto = ImportDto(random_citizens_list, ImportIdDto())
 
     for citizen in dto.citizens:
         citizen.import_id = dto.import_id.import_id

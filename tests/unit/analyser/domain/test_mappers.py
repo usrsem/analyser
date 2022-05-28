@@ -1,9 +1,8 @@
-from datetime import date, datetime
+from datetime import datetime
 from uuid import UUID, uuid4
 from analyser.domain.dtos import CitizenDto, Gender
 from analyser.domain.pydantic import CitizenModel
 from analyser.domain.mappers import citizen_model_to_dto, citizen_dto_to_model
-from copy import deepcopy
 from typing import Any
 
 

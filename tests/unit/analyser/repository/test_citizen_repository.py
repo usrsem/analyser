@@ -3,7 +3,6 @@ from sqlalchemy.ext.asyncio.session import AsyncSession
 from sqlalchemy.exc import SQLAlchemyError
 from analyser.repository.citizen_repository import AsyncCitizenRepository, AsyncSessionCitizenRepository
 from analyser.domain.dtos import CitizenDto
-from loguru import logger
 from typing import Optional
 
 

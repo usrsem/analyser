@@ -2,7 +2,6 @@ import pytest
 from analyser.domain.dtos import ImportIdDto
 from analyser.repository.import_repository import AsyncImportRepository, AsyncSessionImportRepository
 from sqlalchemy.ext.asyncio.session import AsyncSession
-from loguru import logger
 
 
 @pytest.fixture

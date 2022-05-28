@@ -1,7 +1,7 @@
 import pytest
 from sqlalchemy.ext.asyncio.session import AsyncSession
 from sqlalchemy.future import select
-from analyser.domain.dtos import ImportDto, ImportIdDto
+from analyser.domain.dtos import ImportIdDto
 
 from analyser.repository.repository_uow import SqlAlchemyUnitOfWork
 from db.context import DEFAULT_SESSION_FACTORY
