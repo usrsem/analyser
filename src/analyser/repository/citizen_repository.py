@@ -1,5 +1,4 @@
 from uuid import UUID
-from analyser.domain.logger import Logger
 from sqlalchemy.future import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from analyser.domain.dtos import CitizenDto, ImportIdDto

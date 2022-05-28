@@ -1,7 +1,5 @@
-import abc
 from typing import Protocol
 
-from loguru import logger
 from sqlalchemy.ext.asyncio.session import AsyncSession
 from sqlalchemy.orm.session import sessionmaker
 from analyser.repository.citizen_repository import AsyncCitizenRepository, AsyncSessionCitizenRepository, FakeCitizenRepository
@@ -10,6 +8,9 @@ from db.context import DEFAULT_SESSION_FACTORY
 
 
 class RepositoryUnitOfWork(Protocol):
+    imports: AsyncImportRepository
+    citizens: AsyncCitizenRepository
+
     def __init__(self) -> None:
         imports: AsyncImportRepository
         citizens: AsyncCitizenRepository
