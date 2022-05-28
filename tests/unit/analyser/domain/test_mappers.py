@@ -19,7 +19,7 @@ model_data: dict[str, Any] = {
     "birth_date": "01.01.1970",
     "gender": "male",
     "relatives": tuple(),
-    "import_id": import_id,
+    # "import_id": import_id,
     "citizen_id": citizen_id,
 }
 
@@ -43,19 +43,21 @@ citizen_model = CitizenModel(**model_data)
 def test_mapping_citizen_model_to_dto():
     before = citizen_model
     after = citizen_model_to_dto(before)
+    after.import_id = import_id
     mustbe = citizen_dto
 
     msg = f"{before=}, {after=}, {mustbe=}"
 
-    assert after == mustbe
+    assert after == mustbe, msg
 
 
 def test_mapping_citizen_dto_to_model():
     before = citizen_dto
     after = citizen_dto_to_model(before)
     mustbe = citizen_model
+    mustbe.import_id = import_id
 
     msg = f"{before=}, {after=}, {mustbe=}"
 
-    assert after == mustbe
+    assert after == mustbe, msg
 
