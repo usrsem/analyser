@@ -4,14 +4,15 @@ from typing import Protocol
 from loguru import logger
 from sqlalchemy.ext.asyncio.session import AsyncSession
 from sqlalchemy.orm.session import sessionmaker
-from analyser.repository.citizen_repository import AsyncCitizenRepository, AsyncSessionCitizenRepository
-from analyser.repository.import_repository import AsyncImportRepository, AsyncSessionImportRepository
+from analyser.repository.citizen_repository import AsyncCitizenRepository, AsyncSessionCitizenRepository, FakeCitizenRepository
+from analyser.repository.import_repository import AsyncImportRepository, AsyncSessionImportRepository, FakeImportRepository
 from db.context import DEFAULT_SESSION_FACTORY
 
 
 class RepositoryUnitOfWork(Protocol):
-    imports: AsyncImportRepository
-    citizens: AsyncCitizenRepository
+    def __init__(self) -> None:
+        imports: AsyncImportRepository
+        citizens: AsyncCitizenRepository
 
     async def commit(self):
         ...
@@ -44,4 +45,26 @@ class SqlAlchemyUnitOfWork:
 
     async def rollback(self):
         await self._asession.rollback()
+
+
+class FakeUnitOfWork:
+    imports: AsyncImportRepository
+    citizens: AsyncCitizenRepository
+
+    def __init__(self) -> None:
+        self.commited = False
+        self.imports = FakeImportRepository([])
+        self.citizens = FakeCitizenRepository([], self.imports)
+
+    async def commit(self):
+        self.commited = True
+
+    async def rollback(self):
+        pass
+
+    async def __aenter__(self):
+        pass
+
+    async def __aexit__(self, *args):
+        pass
 
