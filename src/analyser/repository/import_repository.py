@@ -17,3 +17,12 @@ class AsyncSessionImportRepository:
     async def save(self, import_dto: ImportIdDto) -> None:
         self._session.add(import_dto)
 
+
+class FakeImportRepository:
+
+    def __init__(self, cache: list[ImportIdDto]) -> None:
+        self.cache: list[ImportIdDto] = cache
+
+    async def save(self, import_dto: ImportIdDto) -> None:
+        self.cache.append(import_dto)
+
