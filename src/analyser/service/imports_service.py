@@ -2,7 +2,6 @@ from typing import Protocol
 
 from analyser.domain.dtos import ImportDto, ImportIdDto
 from analyser.repository.repository_uow import RepositoryUnitOfWork
-from loguru import logger as log
 
 
 class ImportsService(Protocol):
