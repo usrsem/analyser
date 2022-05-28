@@ -1,4 +1,3 @@
-from loguru import logger
 from analyser.repository.citizen_repository import AsyncCitizenRepository, AsyncSessionCitizenRepository
 from analyser.repository.import_repository import AsyncImportRepository, AsyncSessionImportRepository
 from analyser.repository.repository_uow import SqlAlchemyUnitOfWork
