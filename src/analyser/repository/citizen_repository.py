@@ -17,7 +17,6 @@ class AsyncCitizenRepository(Protocol):
     async def delete_by_citizen_id(self, citizen_id: UUID) -> None:
         ...
 
-
 class AsyncSessionCitizenRepository:
     def __init__(self, session: AsyncSession) -> None:
         self._session: AsyncSession = session

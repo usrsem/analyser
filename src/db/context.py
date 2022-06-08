@@ -30,8 +30,3 @@ DEFAULT_SESSION_FACTORY = sessionmaker(
 
 logger.info("Default session factory inited")
 
-session: async_scoped_session = async_scoped_session(
-    DEFAULT_SESSION_FACTORY, scopefunc=current_task)
-
-
-
