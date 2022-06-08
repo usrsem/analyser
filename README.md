@@ -27,7 +27,10 @@ Add path vars:
 Then run commands:
 ```
 poetry install --no-dev
-poetry run almbic upgrade head
+poetry run alembic upgrade head
 poetry run api
 ```
+
+## Docs
+Swagger docs available on http://localhost:8000/docs by default
 
