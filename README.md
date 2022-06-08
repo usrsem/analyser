@@ -18,8 +18,16 @@ uploaded data.
 
 
 ## How to run
+Add path vars:
+1. `ANALYSER_PG_USER`
+1. `ANALYSER_PG_PASSWORD`
+1. `ANALYSER_PG_HOST`
+1. `ANALYSER_PG_DB_NAME`
+
+Then run commands:
 ```
-poetry install
+poetry install --no-dev
+poetry run almbic upgrade head
 poetry run api
 ```
 
